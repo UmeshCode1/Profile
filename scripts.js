@@ -5,33 +5,29 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById('hero-animation').appendChild(renderer.domElement);
 
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+// Infinity Logo Geometry
+const curve = new THREE.CurvePath();
+const points = [];
+for (let i = 0; i <= 200; i++) {
+    const t = (i / 200) * Math.PI * 2;
+    const x = Math.sin(t) * Math.cos(t);
+    const y = Math.sin(t);
+    const z = Math.cos(t);
+    points.push(new THREE.Vector3(x, y, z));
+}
+const path = new THREE.CatmullRomCurve3(points);
+const geometry = new THREE.TubeGeometry(path, 100, 1, 8, true);
 const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
-const torus = new THREE.Mesh(geometry, material);
-scene.add(torus);
+const infinityLogo = new THREE.Mesh(geometry, material);
+scene.add(infinityLogo);
 
-camera.position.z = 50;
+camera.position.z = 5;
 
 function animate() {
     requestAnimationFrame(animate);
-    torus.rotation.x += 0.01;
-    torus.rotation.y += 0.01;
+    infinityLogo.rotation.x += 0.01;
+    infinityLogo.rotation.y += 0.01;
     renderer.render(scene, camera);
 }
 
 animate();
-
-// Google Map Integration
-function initMap() {
-    const location = { lat: 23.2599, lng: 77.4126 };
-    const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
-        center: location
-    });
-    const marker = new google.maps.Marker({
-        position: location,
-        map: map
-    });
-}
-
-window.initMap = initMap;
