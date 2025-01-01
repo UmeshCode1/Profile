@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(to bottom, #1a1a2e, #16213e);
+            color: #fff;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+
+        header.scrolled {
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #4a9eff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            animation: spin 20s linear infinite;
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #4a9eff;
+            border-radius: 50%;
+            filter: blur(20px);
+            opacity: 0.3;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: slideInDown 1s ease-out;
+        }
+
+        .typewriter {
+            font-family: monospace;
+            color: #4a9eff;
+            height: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            animation: fadeIn 1s ease-out 1s forwards;
+            opacity: 0;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #4a9eff;
+            transform: scale(1.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 0.5s;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            background: rgba(74, 158, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: #2a2a4e;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(74, 158, 255, 0.2);
+            color: #4a9eff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-button {
+            background: #4a9eff;
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 2rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 2rem;
+        }
+
+        .contact-button:hover {
+            background: #357abd;
+            transform: scale(1.05);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.05); }
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #4a9eff;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            nav a {
+                margin: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <img src="/api/placeholder/150/150" alt="Logo" class="logo">
+            </div>
+            <h1>Your Name</h1>
+            <div class="typewriter"></div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-grid">
+            <div>
+                <p>Your professional summary goes here. Describe your expertise in AI, machine learning, and innovation.</p>
+                <p>Share your journey, achievements, and what drives you in the field of technology.</p>
+            </div>
+            <div>
+                <h3>Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">Machine Learning</div>
+                    <div class="skill-card">Deep Learning</div>
+                    <div class="skill-card">Python</div>
+                    <div class="skill-card">TensorFlow</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image"></div>
+                <div class="project-content">
+                    <h3>Project Title 1</h3>
+                    <p>Brief description of the project goes here.</p>
+                    <div class="project-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">ML</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat project cards as needed -->
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <p>Interested in collaborating? Let's connect!</p>
+        <button class="contact-button">Contact Me</button>
+    </section>
+
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Typewriter effect
+        const text = "Innovator | AI Enthusiast | Machine Learning Explorer";
+        const typewriter = document.querySelector('.typewriter');
+        let i = 0;
+
+        function typeWrite() {
+            if (i < text.length) {
+                typewriter.innerHTML = text.substring(0, i + 1) + '<span class="cursor">|</span>';
+                i++;
+                setTimeout(typeWrite, 100);
+            }
+        }
+        typeWrite();
+
+        // Scroll animations
+        const sections = document.querySelectorAll('section:not(.hero)');
+        const header = document.querySelector('header');
+        const scrollTop = document.querySelector('.scroll-top');
+
+        function checkScroll() {
+            // Header background
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Scroll to top button
+            if (window.scrollY > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+
+            // Section animations
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - window.innerHeight / 1.5)) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        checkScroll();
+
+        // Scroll to top functionality
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
