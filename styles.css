@@ -5,6 +5,7 @@ body {
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
+    background: #eef2f3; /* Subtle gradient background */
 }
 
 header {
@@ -16,11 +17,14 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideDown 1s ease-in-out;
 }
 
 header .logo {
     font-size: 1.5rem;
     font-weight: bold;
+    letter-spacing: 1px;
+    animation: fadeInLeft 1s ease-out;
 }
 
 header .nav-links {
@@ -40,6 +44,7 @@ header .nav-links li a {
 
 header .nav-links li a:hover {
     color: #f39c12;
+    text-shadow: 0 0 10px #f39c12;
 }
 
 /* Hero Section */
@@ -49,10 +54,11 @@ header .nav-links li a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #333, #555);
+    background: linear-gradient(to bottom, #1e3c72, #2a5298);
     color: #fff;
     text-align: center;
     padding: 0 2rem;
+    overflow: hidden;
 }
 
 .hero-title {
@@ -76,10 +82,12 @@ header .nav-links li a:hover {
     text-decoration: none;
     font-weight: bold;
     transition: background 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cta:hover {
     background: #e67e22;
+    transform: scale(1.1);
 }
 
 /* Content Sections */
@@ -88,10 +96,25 @@ header .nav-links li a:hover {
     text-align: center;
     background: #f4f4f4;
     margin: 0 auto;
+    position: relative;
+    overflow: hidden;
 }
 
 .content-section:nth-child(even) {
     background: #fff;
+}
+
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+    z-index: -1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
 }
 
 .project-list {
@@ -107,11 +130,30 @@ header .nav-links li a:hover {
     color: #fff;
     border-radius: 8px;
     transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
 }
 
 .project-item:hover {
     transform: translateY(-10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.project-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+    transition: transform 0.3s;
+    z-index: -1;
+}
+
+.project-item:hover::before {
+    transform: scale(1.2);
 }
 
 /* Footer */
@@ -123,6 +165,11 @@ footer {
     font-size: 0.9rem;
 }
 
+footer p {
+    margin: 0;
+    animation: fadeIn 2s ease-in;
+}
+
 /* Animations */
 @keyframes fadeIn {
     from {
@@ -131,6 +178,26 @@ footer {
     }
     to {
         opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
         transform: translateY(0);
     }
 }
