@@ -31,7 +31,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(135deg, #000428, #004e92);
+    background: linear-gradient(135deg, #ff512f, #dd2476);
 }
 
 .hero-content {
@@ -108,12 +108,12 @@ a:hover {
 }
 
 .flip-card-front {
-    background: linear-gradient(135deg, #ffc107, #ff9800);
+    background: linear-gradient(135deg, #ff8a00, #da1b60);
     color: black;
 }
 
 .flip-card-back {
-    background: linear-gradient(135deg, #4caf50, #8bc34a);
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
     color: white;
     transform: rotateY(180deg);
 }
