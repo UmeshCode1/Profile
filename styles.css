@@ -226,6 +226,6 @@ footer {
     transition: color 0.3s;
 }
 
-.social-icons a:hover {
+social-icons a:hover {
     color: #03a9f4;
 }
