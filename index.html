@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umesh Patel - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <h1 class="logo">Umesh Patel</h1>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h2 class="hero-title">Welcome to My Portfolio</h2>
+        <p class="hero-subtitle">Exploring AI, Machine Learning, and Innovation</p>
+        <a href="#about" class="cta">Learn More</a>
+    </section>
+
+    <section id="about" class="content-section">
+        <h2>About Me</h2>
+        <p>Hi, I'm Umesh Patel, a student at Oriental College of Technology, Bhopal. I'm passionate about AI, Machine Learning, mathematics, and innovation. As a Google Developer Group member, I actively explore future technology research and development.</p>
+    </section>
+
+    <section id="projects" class="content-section">
+        <h2>Projects</h2>
+        <div class="project-list">
+            <div class="project-item">
+                <h3>Machine Learning Study Plan</h3>
+                <p>A comprehensive 12-week plan for mastering Machine Learning concepts.</p>
+            </div>
+            <div class="project-item">
+                <h3>AI Innovation Research</h3>
+                <p>Exploring new frontiers in AI and applying them to real-world problems.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="content-section">
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out to me for collaborations or queries.</p>
+        <ul>
+            <li>Email: <a href="mailto:umesh.patel@example.com">umesh.patel@example.com</a></li>
+            <li>GitHub: <a href="https://github.com/umeshpatel" target="_blank">github.com/umeshpatel</a></li>
+            <li>LinkedIn: <a href="https://linkedin.com/in/umeshpatel" target="_blank">linkedin.com/in/umeshpatel</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Umesh Patel. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // GSAP for smooth animations
+        gsap.from(".hero-title", { duration: 1, y: -50, opacity: 0 });
+        gsap.from(".hero-subtitle", { duration: 1, y: 50, opacity: 0, delay: 0.5 });
+        gsap.from(".cta", { duration: 1, scale: 0, delay: 1 });
+
+        // ScrollMagic for scrolling effects
+        const controller = new ScrollMagic.Controller();
+        document.querySelectorAll(".content-section").forEach((section) => {
+            new ScrollMagic.Scene({
+                triggerElement: section,
+                triggerHook: 0.8,
+                reverse: false,
+            })
+                .setTween(gsap.from(section, { opacity: 0, y: 50, duration: 1 }))
+                .addTo(controller);
+        });
+    </script>
+</body>
+</html>
