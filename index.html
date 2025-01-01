@@ -59,13 +59,44 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    /* Add the new CSS code here */
+    /* Hero Section Background Animation */
+    .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+        animation: gradientBackground 8s ease-in-out infinite;
+    }
+
+    /* Keyframes for colorful gradient animation */
+    @keyframes gradientBackground {
+        0% {
+            background: linear-gradient(to bottom, #1a1a2e, #16213e);
         }
+        25% {
+            background: linear-gradient(to bottom, #ff4e00, #d1c4e9);
+        }
+        50% {
+            background: linear-gradient(to bottom, #00bcd4, #ff4081);
+        }
+        75% {
+            background: linear-gradient(to bottom, #00bfae, #ffca28);
+        }
+        100% {
+            background: linear-gradient(to bottom, #1a1a2e, #16213e);
+        }
+    }
 
         .logo-container {
             position: relative;
