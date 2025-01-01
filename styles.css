@@ -1,0 +1,73 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+header {
+  background: #333;
+  color: #fff;
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+header .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+}
+
+header .nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.typewriter {
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+
+.social-icons {
+  margin-top: 1.5rem;
+}
+
+.social-icons a img {
+  width: 40px;
+  margin: 0 10px;
+}
+
+.content-section {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+footer {
+  background: #111;
+  padding: 1rem 0;
+  text-align: center;
+}
